@@ -1,25 +1,30 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import UserPage from './features/users/UserPage';
+import SubjectPage from './features/subjects/SubjectPage';
+import ComplexityPage from './features/complexities/ComplexityPage';
+import QuestionPage from './features/questions/QuestionPage';
+import Sidebar from './components/Sidebar'; 
 
-function App() {
+const App = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <BrowserRouter>
+    <div className="flex">
+      <Sidebar />
+      <div className="flex-grow p-4">
+        <Routes>
+          <Route path="/users" element={<UserPage />} />
+          <Route path="/subjects" element={<SubjectPage />} />
+          <Route path="/complexities" element={<ComplexityPage />} />
+          <Route path="/questions" element={<QuestionPage />} />
+          {/* Add home or default route */}
+          <Route path="/" element={<div>Welcome to Exam Automation</div>} />
+          <Route path="*" element={<div>404 Not Found</div>} />
+        </Routes>
+      </div>
     </div>
+    </BrowserRouter>
   );
-}
+};
 
 export default App;
